@@ -1,0 +1,18 @@
+from django.shortcuts import render
+from gt.serializer import EmployeeSerializer, StudentSerialiZer
+from gt.models import Employee, Student
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+# Create your views here.
+@api_view(['GET'])
+def employee_view(request):
+    employees = Employee.objects.all()
+    serializer = EmployeeSerializer(employees, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def student_view(request):
+    students = Student.objects.all()
+    serializer = StudentSerialiZer(students, many=True)
+    return Response(serializer.data)

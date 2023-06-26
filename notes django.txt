@@ -1,0 +1,41 @@
+models in db (app)
+
+class Employee(models.Model):
+    first_name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    DOB = models.DateTimeField()
+    phone = models.IntegerField()
+
+    def __str__(self):
+        return self.first_name
+
+ create 2 new files in app -> urls.py, serializer.py 
+
+urls .py 
+
+from django.urls import path
+from gt.views import employee_view
+from gt.views import student_view
+
+urlpatterns = [
+    path('list/', employee_view),
+    path('detail/',student_view)
+]
+
+seializer.py 
+
+
+from rest_framework import serializers
+from gt.models import Employee
+from gt.models import Student
+
+class EmployeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+
+
+class StudentSerialiZer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = '_all_'

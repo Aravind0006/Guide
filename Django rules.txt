@@ -1,0 +1,79 @@
+Rule 1. Follow proper indentation
+
+1. install python
+2. pip install virtualenv
+3. select exact path where to create a venv -> python -m venv gtsa
+4. To activate venv -> gtsa\scripts\activate
+5. Install django -> pip install django    (make sure path is in venv)
+6. create new python django project -> django-admin startproject Dinesh
+7. navigate (cd aravind) inside the django project -> python manage.py runserver (after copy that id address to paste it into crome)
+8. create django app -> python manage.py startapp gt
+9. add the app in "INSTALLED_APPS" in settings.py (app name ('arav')
+10. python manage.py migrate (in cmd)
+11. python manage.py createsuperuser (in cmd) 
+     1.it ask username, email , password(not visible) , password again username anyway = yes
+12. Create models(database)
+
+inmodels.py =
+
+    class employers(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    age = models.IntegerField()
+    DOB = models.DateField()
+    phone = models.IntegerField()
+    email = models.CharField()
+
+    def __str__(self):
+        return self.first_name
+
+13. pip install djangorestframework
+14. add the 'rest_framework' in "INSTALLED_APPS" in settings.py
+
+15. pip install django-cors-headers
+16. add the 'corsheaders' in "INSTALLED_APPS" in settings.py
+17. Add 
+ 	'corsheaders.middleware.CorsMiddleware',
+    	'django.middleware.common.CommonMiddleware',
+
+ in MIDDLEWARE. Make this as first two lines.
+
+18. Add    CORS_ORIGIN_ALLOW_ALL = True   in settings.py below MIDDLEWARE
+
+19.create 2 new files in app -> urls.py, serializer.py (arav)
+	1.inside the admin -> url.py -> inside urlpattern -> path('emp/',include('gt.urls')) once only
+	2.view.py -> paste 
+	3.(arav) -> url.py  
+
+20. add the model in admin.py ->   admin.site.register(Employee)  
+
+14. python manage.py makemigrations 
+15. python manage.py migrate 
+16.python manage.py runserver 
+                                                                                                     
+(after change) 
+1. python manage.py makemigrations  
+2. python manage.py migrate
+3.python manage.py runserver
+
+1.Create Models (Tables)
+2. Serializer.py (Complex data to Json Data)
+3. Define a functions in views.py
+4. generate path in app urls.py
+
+how to add a forign key in project
+1.
+
+we have to add this before 
+ category = models.ForeignKey('Gender',on_delete=models.CASCADE,null=True)
+
+class Gender(models.Model):
+    category = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.category 
+
+declare this after in models.py
+
+2.we have to add    admin.site.register(Gender)    this into admin.py
+
